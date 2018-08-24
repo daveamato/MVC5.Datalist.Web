@@ -82,9 +82,8 @@
     [<span class="cls">HttpGet</span>]
     <span class="kwd">public</span> <span class="cls">JsonResult</span> AllPeople(<span class="cls">DatalistFilter</span> filter, <span class="cls">Int32</span>? income)
     {
-        filter.AdditionalFilters[<span class="str">"Income"</span>] = income;
-
         <span class="cls">PeopleDatalist</span> datalist = <span class="kwd">new</span> <span class="cls">PeopleDatalist</span>(Context) { Filter = filter };
+        filter.AdditionalFilters[<span class="kwd">nameof</span>(<span class="cls">Person</span>.Income)] = income;
 
         <span class="kwd">return</span> Json(datalist.GetData(), <span class="cls">JsonRequestBehavior</span>.AllowGet);
     }
@@ -110,7 +109,7 @@
     <span class="kwd">public</span> PeopleDatalist()
     {
         Url = <span class="str">"AllPeople"</span>;
-        AdditionalFilters.Add(<span class="str">"Income"</span>);
+        AdditionalFilters.Add(<span class="kwd">nameof</span>(<span class="cls">Person</span>.Income));
     }
 
     <span class="kwd">public override</span> <span class="cls">IQueryable</span>&lt;<span class="cls">Person</span>&gt; GetModels()
