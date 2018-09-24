@@ -91,55 +91,31 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Bootstrap\bootstrap.css" />
-    <Content Include="Content\MvcDatalist\mvc-datalist.css" />
-    <Content Include="Content\FontAwesome\font-awesome.css" />
-    <Content Include="Content\FontAwesome\Fonts\fontawesome-webfont.woff" />
-    <Content Include="Content\Shared\base.css" />
-    <Content Include="Images\background.jpg" />
-    <Content Include="Global.asax" />
-    <Content Include="Scripts\MvcDatalist\mvc-datalist.js" />
-    <Content Include="Scripts\Shared\site.js" />
-    <Content Include="Views\Column\CssClass.cshtml" />
-    <Content Include="Views\Column\Header.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Installation.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Web.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Context\PeopleRepository.cs" />
     <Compile Include="Controllers\ColumnController.cs" />
+    <Compile Include="Controllers\DatalistController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JavascriptController.cs" />
-    <Compile Include="Controllers\DatalistController.cs" />
-    <Compile Include="Datalists\PeopleDatalist.cs" />
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Person.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\Titles.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Titles.resx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Images\background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Bootstrap\bootstrap.css" />
+    <Content Include="Content\FontAwesome\font-awesome.css" />
+    <Content Include="Content\FontAwesome\Fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\MvcDatalist\mvc-datalist.css" />
+    <Content Include="Content\Shared\base.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\MvcDatalist\mvc-datalist.js" />
+    <Content Include="Scripts\Shared\site.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Column\CssClass.cshtml" />
+    <Content Include="Views\Column\Header.cshtml" />
     <Content Include="Views\Column\Position.cshtml" />
-    <Content Include="Views\Javascript\FilterChange.cshtml" />
-    <Content Include="Views\Javascript\Readonly.cshtml" />
-    <Content Include="Views\Javascript\Reload.cshtml" />
-    <Content Include="Views\Javascript\Select.cshtml" />
     <Content Include="Views\Datalist\AdditionalFilters.cshtml" />
-    <Content Include="Views\Javascript\Api.cshtml" />
     <Content Include="Views\Datalist\HiddenData.cshtml" />
     <Content Include="Views\Datalist\Id.cshtml" />
     <Content Include="Views\Datalist\Label.cshtml" />
@@ -148,18 +124,46 @@
     <Content Include="Views\Datalist\SortOptions.cshtml" />
     <Content Include="Views\Datalist\SourceUrl.cshtml" />
     <Content Include="Views\Datalist\Title.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Installation.cshtml" />
+    <Content Include="Views\Javascript\Api.cshtml" />
     <Content Include="Views\Javascript\Browse.cshtml" />
+    <Content Include="Views\Javascript\FilterChange.cshtml" />
+    <Content Include="Views\Javascript\Readonly.cshtml" />
+    <Content Include="Views\Javascript\Reload.cshtml" />
+    <Content Include="Views\Javascript\Select.cshtml" />
     <Content Include="Views\Javascript\SelectFirst.cshtml" />
     <Content Include="Views\Javascript\SelectSingle.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\MvcDatalist\_Dialog.cshtml" />
+    <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Context\PeopleRepository.cs" />
+    <Compile Include="Datalists\PeopleDatalist.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <Compile Include="Models\Person.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Global.asax" />
+    <Content Include="packages.config" />
+    <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Resources\Titles.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Titles.resx</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Resources\Titles.de.resx" />
     <EmbeddedResource Include="Resources\Titles.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -191,11 +195,4 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
