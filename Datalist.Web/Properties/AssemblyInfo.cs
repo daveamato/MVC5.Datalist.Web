@@ -8,5 +8,5 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCompany("NonFactors")]
 [assembly: AssemblyCopyright("Copyright © NonFactors")]
 [assembly: NeutralResourcesLanguage("en")]
-[assembly: AssemblyFileVersion("6.0.0.0")]
-[assembly: AssemblyVersion("6.0.0.0")]
+[assembly: AssemblyFileVersion("6.1.0.0")]
+[assembly: AssemblyVersion("6.1.0.0")]
