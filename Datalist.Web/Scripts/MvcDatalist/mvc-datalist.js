@@ -1,5 +1,5 @@
 ﻿/*!
- * Datalist 6.1.0
+ * Datalist 6.1.1
  * https://github.com/NonFactors/MVC5.Datalist
  *
  * Copyright © NonFactors
@@ -990,6 +990,8 @@ var MvcDatalist = (function () {
 
                     datalist.autocomplete.next();
                 } else if (e.which == 13 && datalist.autocomplete.activeItem) {
+                    e.preventDefault();
+
                     var click = new Event('click');
                     if (typeof Event !== 'function') {
                         click = document.createEvent('Event');
