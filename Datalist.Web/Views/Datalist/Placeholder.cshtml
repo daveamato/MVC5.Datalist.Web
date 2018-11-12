@@ -1,26 +1,15 @@
 ﻿@{
-    ViewBag.Title = "Datalist select single";
+    ViewBag.Title = "Datalist placeholder";
 }
 
 <div class="row">
     <div class="widget example col-xl-6">
         <div class="widget-header">
             <div class="fa fa-bars"></div>
-            <span>Datalist</span>
+            <span>Autocomplete</span>
         </div>
         <div class="widget-content">
-            <div class="row">
-                <div class="col-xl-12">
-                    @Html.TextBox("DatalistIncome", null, new { @class = "form-control text-center", placeholder = "Income (try 1050)" })
-                    <br />
-                </div>
-                <div class="col-xl-9">
-                    @Html.Datalist("Datalist", new PeopleDatalist { AdditionalFilters = new List<String> { "DatalistIncome" } })
-                </div>
-                <div class="col-xl-3 text-center">
-                    <button id="DatalistButton" class="btn btn-secondary">Select single</button>
-                </div>
-            </div>
+            @Html.AutoComplete("Autocomplete", new PeopleDatalist { Placeholder = "Search..." })
         </div>
     </div>
     <div class="widget code col-xl-6">
@@ -30,28 +19,30 @@
         </div>
         <div class="widget-content">
 <pre>
-<code>@@Html.TextBox(<span class="str">"Income"</span>)
-
-
-@@Html.DatalistFor(model => model.Id, <span class="kwd">new</span> <span class="cls">PeopleDatalist</span>())</code>
+<code>@@Html.AutoCompleteFor(model => model.Id, <span class="kwd">new</span> <span class="cls">PeopleDatalist</span> { Placeholder = <span class="str">"Search..."</span> })</code>
 </pre>
         </div>
     </div>
 </div>
 
 <div class="row">
-    <div class="widget code col-xl-12">
+    <div class="widget example col-xl-6">
+        <div class="widget-header">
+            <div class="fa fa-bars"></div>
+            <span>Datalist</span>
+        </div>
+        <div class="widget-content">
+            @Html.Datalist("Datalist", new PeopleDatalist { Placeholder = "Search..." })
+        </div>
+    </div>
+    <div class="widget code col-xl-6">
         <div class="widget-header">
             <div class="fa fa-code"></div>
-            <span>Javascript</span>
+            <span>View</span>
         </div>
         <div class="widget-content">
 <pre>
-<code>document.querySelector(<span class="str">'button'</span>).addEventListener(<span class="str">'click'</span>, <span class="kwd">function</span> () {
-    <span class="kwd">var</span> triggerChanges = <span class="kwd">true</span>;
-
-    <span class="kwd">new</span> <span class="cls">MvcDatalist</span>(document.getElementById(<span class="str">'Id'</span>)).selectSingle(triggerChanges);
-});</code>
+<code>@@Html.DatalistFor(model => model.Id, <span class="kwd">new</span> <span class="cls">PeopleDatalist</span> { Placeholder = <span class="str">"Search..."</span> })</code>
 </pre>
         </div>
     </div>
@@ -75,10 +66,9 @@
     }
 
     [<span class="cls">HttpGet</span>]
-    <span class="kwd">public</span> <span class="cls">JsonResult</span> AllPeople(<span class="cls">DatalistFilter</span> filter, <span class="cls">Int32</span>? income)
+    <span class="kwd">public</span> <span class="cls">JsonResult</span> AllPeople(<span class="cls">DatalistFilter</span> filter)
     {
         <span class="cls">PeopleDatalist</span> datalist = <span class="kwd">new</span> <span class="cls">PeopleDatalist</span>(Context) { Filter = filter };
-        filter.AdditionalFilters[<span class="kwd">nameof</span>(<span class="cls">Person</span>.Income)] = income;
 
         <span class="kwd">return</span> Json(datalist.GetData(), <span class="cls">JsonRequestBehavior</span>.AllowGet);
     }
@@ -104,7 +94,8 @@
     <span class="kwd">public</span> PeopleDatalist()
     {
         Url = <span class="str">"AllPeople"</span>;
-        AdditionalFilters.Add(<span class="kwd">nameof</span>(<span class="cls">Person</span>.Income));
+        Filter.Sort = <span class="str">"Income"</span>;
+        Filter.Order = <span class="cls">DatalistSortOrder</span>.Desc;
     }
 
     <span class="kwd">public override</span> <span class="cls">IQueryable</span>&lt;<span class="cls">Person</span>&gt; GetModels()
@@ -116,11 +107,3 @@
         </div>
     </div>
 </div>
-
-@section scripts {
-    <script>
-        document.getElementById('DatalistButton').addEventListener('click', function () {
-            new MvcDatalist(document.getElementById('Datalist')).selectSingle();
-        });
-    </script>
-}

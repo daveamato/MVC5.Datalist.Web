@@ -21,6 +21,12 @@ namespace Datalist.Web.Controllers
         }
 
         [HttpGet]
+        public ViewResult Placeholder()
+        {
+            return View();
+        }
+
+        [HttpGet]
         public ViewResult Localization()
         {
             return View();
