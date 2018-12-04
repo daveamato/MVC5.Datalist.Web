@@ -1,5 +1,5 @@
 ﻿/*!
- * Datalist 6.2.0
+ * Datalist 6.2.1
  * https://github.com/NonFactors/MVC5.Datalist
  *
  * Copyright © NonFactors
@@ -453,8 +453,8 @@ var MvcDatalistOverlay = (function () {
 }());
 var MvcDatalistAutocomplete = (function () {
     function MvcDatalistAutocomplete(datalist) {
-        this.datalist = datalist;
         this.activeItem = null;
+        this.datalist = datalist;
         this.element = document.createElement('ul');
         this.element.className = 'datalist-autocomplete';
         this.options = { minLength: 1, rows: 20, sort: datalist.filter.sort, order: datalist.filter.order };
@@ -775,7 +775,7 @@ var MvcDatalist = (function () {
             }
 
             if (triggerChanges) {
-                var change = null;
+                var change;
                 if (typeof (Event) === 'function') {
                     change = new Event('change');
                 } else {
@@ -987,7 +987,7 @@ var MvcDatalist = (function () {
                 } else if (e.which == 13 && datalist.autocomplete.activeItem) {
                     e.preventDefault();
 
-                    var click = null;
+                    var click;
                     if (typeof (Event) === 'function') {
                         click = new Event('click');
                     } else {
