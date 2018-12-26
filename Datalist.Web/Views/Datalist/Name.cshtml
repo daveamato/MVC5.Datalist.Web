@@ -1,0 +1,106 @@
+﻿@{
+    ViewBag.Title = "Posting datalist label values";
+}
+
+<div class="row">
+    <div class="widget example col-xl-6">
+        <div class="widget-header">
+            <div class="fa fa-bars"></div>
+            <span>Datalist</span>
+        </div>
+        <div class="widget-content">
+            @using (Html.BeginForm())
+            {
+                @Html.Datalist("Datalist", new PeopleDatalist { Title = "People", Name = "Person" })
+            }
+        </div>
+    </div>
+    <div class="widget code col-xl-6">
+        <div class="widget-header">
+            <div class="fa fa-code"></div>
+            <span>View</span>
+        </div>
+        <div class="widget-content">
+<pre>
+    <code>@@Html.DatalistFor(model => model.Id, <span class="kwd">new</span> <span class="cls">PeopleDatalist</span> { Title = <span class="str">"People"</span>, Name = <span class="str">"Person"</span> })</code>
+</pre>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="widget code col-xl-6">
+        <div class="widget-header">
+            <div class="fa fa-code"></div>
+            <span>Controller</span>
+        </div>
+        <div class="widget-content">
+<pre>
+<code><span class="kwd">public class</span> <span class="cls">HomeController</span> : <span class="cls">Controller</span>
+{
+    <span class="kwd">private</span> <span class="cls">DbContext</span> Context { <span class="kwd">get</span>; }
+    <span class="kwd">private</span> <span class="cls">PeopleRepository</span> Repository { <span class="kwd">get</span>; }
+
+    <span class="kwd">public</span> HomeController(<span class="cls">DbContext</span> context, <span class="cls">PeopleRepository</span> repository)
+    {
+        Context = context;
+        Repository = repository;
+    }
+
+    [<span class="cls">HttpGet</span>]
+    <span class="kwd">public</span> <span class="cls">ViewResult</span> Employ()
+    {
+        <span class="kwd">return</span> View();
+    }
+
+    [<span class="cls">HttpPost</span>]
+    <span class="kwd">public</span> <span class="cls">ActionResult</span> Employ(<span class="cls">Int32</span> id?, <span class="cls">String</span> person)
+    {
+        <span class="kwd">if</span> (id == <span class="kwd">null</span>)
+            id = Repository.CreateMissing(person);
+
+        Repository.Employ(id);
+
+        <span class="kwd">return</span> RedirectToAction(<span class="str">"Index"</span>);
+    }
+
+    [<span class="cls">HttpGet</span>]
+    <span class="kwd">public</span> <span class="cls">JsonResult</span> AllPeople(<span class="cls">DatalistFilter</span> filter)
+    {
+        <span class="cls">PeopleDatalist</span> datalist = <span class="kwd">new</span> <span class="cls">PeopleDatalist</span>(Context) { Filter = filter };
+
+        <span class="kwd">return</span> Json(datalist.GetData(), <span class="cls">JsonRequestBehavior</span>.AllowGet);
+    }
+}</code>
+</pre>
+        </div>
+    </div>
+    <div class="widget code col-xl-6">
+        <div class="widget-header">
+            <div class="fa fa-code"></div>
+            <span>Datalist</span>
+        </div>
+        <div class="widget-content">
+<pre>
+<code><span class="kwd">public class</span> <span class="cls">PeopleDatalist</span> : <span class="cls">MvcDatalist</span>&lt;<span class="cls">Person</span>&gt;
+{
+    <span class="kwd">private</span> <span class="cls">DbContext</span> Context { <span class="kwd">get</span>; }
+
+    <span class="kwd">public</span> PeopleDatalist(<span class="cls">DbContext</span> context)
+    {
+        Context = context;
+    }
+    <span class="kwd">public</span> PeopleDatalist()
+    {
+        Url = <span class="str">"AllPeople"</span>;
+    }
+
+    <span class="kwd">public override</span> <span class="cls">IQueryable</span>&lt;<span class="cls">Person</span>&gt; GetModels()
+    {
+        <span class="kwd">return</span> Context.Set&lt;<span class="cls">Person</span>&gt;();
+    }
+}</code>
+</pre>
+        </div>
+    </div>
+</div>

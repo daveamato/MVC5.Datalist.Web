@@ -120,7 +120,9 @@
     <Content Include="Views\Datalist\Id.cshtml" />
     <Content Include="Views\Datalist\Label.cshtml" />
     <Content Include="Views\Datalist\Localization.cshtml" />
+    <Content Include="Views\Datalist\Name.cshtml" />
     <Content Include="Views\Datalist\PagingOptions.cshtml" />
+    <Content Include="Views\Datalist\Placeholder.cshtml" />
     <Content Include="Views\Datalist\SortOptions.cshtml" />
     <Content Include="Views\Datalist\SourceUrl.cshtml" />
     <Content Include="Views\Datalist\Title.cshtml" />
@@ -146,7 +148,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Content Include="Views\Datalist\Placeholder.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

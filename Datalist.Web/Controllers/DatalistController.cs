@@ -9,6 +9,12 @@ namespace Datalist.Web.Controllers
     public class DatalistController : Controller
     {
         [HttpGet]
+        public ViewResult Name()
+        {
+            return View();
+        }
+
+        [HttpGet]
         public ViewResult Title()
         {
             return View();
